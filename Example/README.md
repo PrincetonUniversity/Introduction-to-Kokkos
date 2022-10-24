@@ -15,10 +15,10 @@ The code can also be compiled for other architectures, however for brewity, this
 
 Loading required modules:
 
-If working on Princeton University clusters, for example Della, you'd need to load required dependencies before you can compile your code (i.e. cmake (already present in `/usr/bin`), C++ compiler & NVIDIA cuda compiler). Use the following modules to do this:
+If working on Princeton University clusters, for example Della, you'd need to load required dependencies before you can compile your code (i.e. cmake, C++ compiler & NVIDIA cuda compiler). Use the following modules to do this:
 
 ```
-    module load rh/devtoolset/9 cudatoolkit/11.7
+    module load cudatoolkit/11.7
 ```
 
 Compiling for CPUs
