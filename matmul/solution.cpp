@@ -101,7 +101,7 @@ int main( int argc, char* argv[] )
 
   // using Layout = Kokkos::LayoutRight;
   // using Layout = Kokkos::LayoutLeft;
-  // using Layout = ExecSpace::array_layout;
+  using Layout = ExecSpace::array_layout;
   
   using MemSpace = ExecSpace::memory_space;
 
