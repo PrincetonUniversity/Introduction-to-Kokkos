@@ -10,8 +10,8 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(kokkos)
 
+add_executable(question question.cpp)
+target_link_libraries(question Kokkos::kokkos)
 
-add_executable(matmul matmul.cpp)
-target_link_libraries(matmul Kokkos::kokkos)
-
-
+add_executable(solution solution.cpp)
+target_link_libraries(solution Kokkos::kokkos)
