@@ -94,9 +94,14 @@ int main( int argc, char* argv[] )
 
   using ExecSpace = Kokkos::DefaultExecutionSpace;
 
-  using Layout = Kokkos::LayoutRight;
+
+  /**
+    EXERCISE See how array layout affects performance
+  */
+
+  // using Layout = Kokkos::LayoutRight;
   // using Layout = Kokkos::LayoutLeft;
-  // using Layout = ExecSpace::array_layout;
+  using Layout = ExecSpace::array_layout;
   
   using MemSpace = ExecSpace::memory_space;
 
@@ -105,16 +110,28 @@ int main( int argc, char* argv[] )
   // Allocate y, x vectors and Matrix A on device.
   typedef Kokkos::View<double*, Layout, MemSpace>   ViewVectorType;
   typedef Kokkos::View<double**, Layout, MemSpace>  ViewMatrixType;
+  /**
+    EXERCISE define 3 view types - x, y, A where x and y are 1D arrays and A is a 2D matrix
+  */
+
   ViewVectorType y( "y", N );
   ViewVectorType x( "x", M );
   ViewMatrixType A( "A", N, M );
 
   // Create host mirrors of device views.
+  /**
+    EXERCISE create mirror views for x,y and A for the host
+  */ 
   ViewVectorType::HostMirror h_y = Kokkos::create_mirror_view( y );
   ViewVectorType::HostMirror h_x = Kokkos::create_mirror_view( x );
   ViewMatrixType::HostMirror h_A = Kokkos::create_mirror_view( A );
 
   // Initialize y vector on host.
+
+  /**
+    EXERCISE Initialize x,y and A on the host
+  */
+
   for ( int i = 0; i < N; ++i ) {
     h_y( i ) = 1;
   }
@@ -132,6 +149,9 @@ int main( int argc, char* argv[] )
   }
 
   // Deep copy host views to device views.
+  /**
+    EXERCISE Deep copy the views to device views
+  */ 
   Kokkos::deep_copy( y, h_y );
   Kokkos::deep_copy( x, h_x );
   Kokkos::deep_copy( A, h_A );
@@ -141,6 +161,17 @@ int main( int argc, char* argv[] )
 
   for ( int repeat = 0; repeat < nrepeat; repeat++ ) {
     // Application: <y,Ax> = y^T*A*x
+
+    /**
+      EXERCISE: write a parallel reduce operation. 
+
+      HINT: syntax for parallel_reduce looks something like this
+
+      Kokkos::parallel_reduce("loop_name", policy, LAMBDA(int i, value_type& l_value){
+        functor();
+      }, g_result)
+    */
+
     double result = 0;
 
     Kokkos::parallel_reduce( "yAx", range_policy(0,N), KOKKOS_LAMBDA ( int j, double &update ) {
