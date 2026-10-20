@@ -41,6 +41,7 @@
 //@HEADER
 */
 
+#include <cmath>
 #include <limits>
 #include <cstdio>
 #include <cstdlib>

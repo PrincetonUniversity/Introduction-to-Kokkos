@@ -41,6 +41,7 @@
 //@HEADER
 */
 
+#include <cmath>
 #include <limits>
 #include <cstdio>
 #include <cstdlib>
@@ -122,9 +123,9 @@ int main( int argc, char* argv[] )
   /**
     EXERCISE create mirror views for x,y and A for the host
   */ 
-  ViewVectorType::HostMirror h_y = Kokkos::create_mirror_view( y );
-  ViewVectorType::HostMirror h_x = Kokkos::create_mirror_view( x );
-  ViewMatrixType::HostMirror h_A = Kokkos::create_mirror_view( A );
+  ViewVectorType::host_mirror_type h_y = Kokkos::create_mirror_view( y );
+  ViewVectorType::host_mirror_type h_x = Kokkos::create_mirror_view( x );
+  ViewMatrixType::host_mirror_type h_A = Kokkos::create_mirror_view( A );
 
   // Initialize y vector on host.
 

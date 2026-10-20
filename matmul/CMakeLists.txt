@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.10)
+cmake_minimum_required (VERSION 3.22)
 project (KokkosTutorial03)
 
 # Install Kokkos as a dependency
@@ -6,7 +6,8 @@ project (KokkosTutorial03)
 include(FetchContent)
 FetchContent_Declare(
   kokkos
-  URL https://github.com/kokkos/kokkos/archive/refs/tags/4.1.00.zip
+  URL https://github.com/kokkos/kokkos/archive/refs/tags/5.2.2.zip
+  DOWNLOAD_EXTRACT_TIMESTAMP TRUE
 )
 FetchContent_MakeAvailable(kokkos)
 
